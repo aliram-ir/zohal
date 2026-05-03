@@ -1,0 +1,53 @@
+# فایل‌های محیط توسعه Visual Studio
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# پوشه‌های Bin و Obj برای تمام پروژه‌ها
+**/bin/
+**/obj/
+
+# فایل‌های انتشار (پکیج‌ها)
+*.nupkg
+*.snupkg
+
+# فایل‌های کامپایل شده
+*.exe
+*.dll
+*.pdb
+
+# پوشه‌های پوشش تست و گزارش‌ها
+TestResults/
+*.coverage
+*.coveragexml
+*.log
+
+# فایل‌های تنظیمات محلی برای Rider / JetBrains IDEs
+.idea/
+
+# فایل‌های لاگ
+*.log
+
+# فایل‌های بسته ابزار تست و پوشش
+*.vsp
+*.cache
+
+# فایل‌های تنظیمات مربوط به بسته‌های NuGet
+*.nupkg
+packages/
+
+# فایل‌های مربوط به هر نوع نسخه خاص دات‌نت
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# فایل‌های مربوط به پوشه‌های موقت یا سیستم‌عامل
+*.DS_Store
+Thumbs.db
+
+# فایل‌های مربوط به پوشه node_modules اگر استفاده کردی
+node_modules/
+
+# اگر فایل‌های محیط توسعه خودت فایل خاص دیگری دارد اضافه کن اینجا
