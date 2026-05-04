@@ -69,4 +69,39 @@ public static class ZohalEndpoints
     /// استعلام چک برگشتی​
     /// </summary>
     public const string BouncedCheque = "services/inquiry/bounced_cheque";
+
+    /// <summary>
+    /// استعلام اعضای هیئت‌مدیره شرکت​
+    /// </summary>
+    public const string CompanyInquiryBoardMembers = "services/inquiry/company_inquiry/board_members";
+
+    /// <summary>
+    /// استعلام اطلاعات شرکت​
+    /// </summary>
+    public const string CompanyInquiry = "services/inquiry/company_inquiry";
+
+    /// <summary>
+    /// استعلام تاریخچه اعضای هیئت‌مدیره شرکت​
+    /// </summary>
+    public const string CompanyInquiryBoardMembersHistory = "services/inquiry/company_inquiry/board_members/history";
+
+    /// <summary>
+    /// استعلام کد پستی​
+    /// </summary>
+    public const string PostalCodeInquiry = "services/inquiry/postal_code_inquiry";
+
+    /// <summary>
+    /// استعلام خلافی خودرو​
+    /// </summary>
+    public const string VehicleInquiryTotalViolations = "services/inquiry/vehicle_inquiry/total_violations";
+
+    /// <summary>
+    /// استعلام خلافی خودرو با جزئیات​
+    /// </summary>
+    public const string VehicleInquiryTotalViolationsDetails = "services/inquiry/vehicle_inquiry/violations_details";
+
+    /// <summary>
+    /// استعلام Enamad​
+    /// </summary>
+    public const string EnamadInquiry = "services/inquiry/enamad_inquiry";
 }

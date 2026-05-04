@@ -235,5 +235,54 @@ namespace Zohal.Infrastructure
                 ZohalEndpoints.BouncedCheque,
                 request,
                 cancellationToken);
+
+
+        //===========================================================
+        //                     خدماتی
+        //===========================================================
+
+
+        public Task<ZohalResult<CompanyInquiryBoardMembersData>> CompanyInquiryBoardMembersAsync(CompanyInquiryBoardMembersRequest request,
+            CancellationToken cancellationToken = default)
+        => SendAsync<CompanyInquiryBoardMembersRequest, CompanyInquiryBoardMembersData>(
+                ZohalEndpoints.CompanyInquiryBoardMembers,
+                request,
+                cancellationToken);
+
+        public Task<ZohalResult<CompanyInquiryResponse>> CompanyInquiryAsync(CompanyInquiryRequest request, CancellationToken cancellationToken = default)
+         => SendAsync<CompanyInquiryRequest, CompanyInquiryResponse>(
+                ZohalEndpoints.CompanyInquiry,
+                request,
+                cancellationToken);
+
+        public Task<ZohalResult<CompanyInquiryBoardMembersHistoryData>> CompanyInquiryBoardMembersHistoryAsync(CompanyInquiryBoardMembersHistoryRequest request, CancellationToken cancellationToken = default)
+         => SendAsync<CompanyInquiryBoardMembersHistoryRequest, CompanyInquiryBoardMembersHistoryData>(
+                ZohalEndpoints.CompanyInquiryBoardMembersHistory,
+                request,
+                cancellationToken);
+
+        public Task<ZohalResult<PostalCodeInquiryResponse>> PostalCodeInquiryAsync(PostalCodeInquiryRequest request, CancellationToken cancellationToken = default)
+         => SendAsync<PostalCodeInquiryRequest, PostalCodeInquiryResponse>(
+                ZohalEndpoints.PostalCodeInquiry,
+                request,
+                cancellationToken);
+
+        public Task<ZohalResult<VehicleInquiryTotalViolationsResponse>> VehicleInquiryTotalViolationsAsync(VehicleInquiryTotalViolationsRequest request, CancellationToken cancellationToken = default)
+         => SendAsync<VehicleInquiryTotalViolationsRequest, VehicleInquiryTotalViolationsResponse>(
+                ZohalEndpoints.VehicleInquiryTotalViolations,
+                request,
+                cancellationToken);
+
+        public Task<ZohalResult<VehicleInquiryTotalViolationsDetailsData>> VehicleInquiryTotalViolationsDetailsAsync(VehicleInquiryTotalViolationsDetailsRequest request, CancellationToken cancellationToken = default)
+         => SendAsync<VehicleInquiryTotalViolationsDetailsRequest, VehicleInquiryTotalViolationsDetailsData>(
+                ZohalEndpoints.VehicleInquiryTotalViolationsDetails,
+                request,
+                cancellationToken);
+
+        public Task<ZohalResult<EnamadInquiryResponse>> EnamadInquiryAsync(EnamadInquiryRequest request, CancellationToken cancellationToken = default)
+        => SendAsync<EnamadInquiryRequest, EnamadInquiryResponse>(
+                ZohalEndpoints.EnamadInquiry,
+                request,
+                cancellationToken);
     }
 }

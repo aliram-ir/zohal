@@ -82,4 +82,60 @@ public interface IZohalClient
         CancellationToken cancellationToken = default);
 
     #endregion
+
+    #region خدماتی
+
+    /// <summary>
+    /// استعلام اعضای هیأت مدیره شرکت
+    /// </summary>
+    Task<ZohalResult<CompanyInquiryBoardMembersData>> CompanyInquiryBoardMembersAsync(
+        CompanyInquiryBoardMembersRequest request,
+        CancellationToken cancellationToken = default);
+
+    /// <summary>
+    /// استعلام اطلاعات شرکت​
+    /// </summary>
+    Task<ZohalResult<CompanyInquiryResponse>> CompanyInquiryAsync(
+        CompanyInquiryRequest request,
+        CancellationToken cancellationToken = default);
+
+
+    /// <summary>
+    /// استعلام تاریخچه اعضای هیئت‌مدیره شرکت​
+    /// </summary>
+    Task<ZohalResult<CompanyInquiryBoardMembersHistoryData>> CompanyInquiryBoardMembersHistoryAsync(
+        CompanyInquiryBoardMembersHistoryRequest request,
+        CancellationToken cancellationToken = default);
+
+    /// <summary>
+    /// استعلام کد پستی​
+    /// </summary>
+    Task<ZohalResult<PostalCodeInquiryResponse>> PostalCodeInquiryAsync(
+        PostalCodeInquiryRequest request,
+        CancellationToken cancellationToken = default);
+
+    /// <summary>
+    /// استعلام خلافی خودرو​
+    /// </summary>
+    Task<ZohalResult<VehicleInquiryTotalViolationsResponse>> VehicleInquiryTotalViolationsAsync(
+       VehicleInquiryTotalViolationsRequest request,
+        CancellationToken cancellationToken = default);
+
+
+    /// <summary>
+    /// استعلام جزئیات خلافی خودرو (برگه‌های جریمه)
+    /// </summary>
+    Task<ZohalResult<VehicleInquiryTotalViolationsDetailsData>> VehicleInquiryTotalViolationsDetailsAsync(
+        VehicleInquiryTotalViolationsDetailsRequest request,
+        CancellationToken cancellationToken = default);
+
+    /// <summary>
+    /// استعلام Enamad​
+    /// </summary>
+    Task<ZohalResult<EnamadInquiryResponse>> EnamadInquiryAsync(
+        EnamadInquiryRequest request,
+        CancellationToken cancellationToken = default);
+
+
+    #endregion
 }

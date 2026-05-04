@@ -1,7 +1,7 @@
 <Solution>
   <Folder Name="/Solution Items/">
     <File Path=".gitignore" />
-    <File Path="License.txt" />
+    <File Path="License" />
     <File Path="Readme.md" />
   </Folder>
   <Project Path="Test/Test.csproj" />
