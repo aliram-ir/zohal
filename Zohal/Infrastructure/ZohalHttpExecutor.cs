@@ -5,6 +5,7 @@ using System.Text;
 using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Reflection;
 using Zohal.Core;
 
 namespace Zohal.Infrastructure
@@ -35,7 +36,7 @@ namespace Zohal.Infrastructure
         }
 
         /// <summary>
-        /// ارسال POST استاندارد + مدیریت خطا + پشتیبانی از TraceId
+        /// ارسال POST استاندارد JSON
         /// </summary>
         public async Task<ZohalResult<string>> PostAsync(
             string endpoint,
@@ -45,7 +46,7 @@ namespace Zohal.Infrastructure
         {
             try
             {
-                // اضافه کردن TraceId به هدر (برای سرورهای سازگار)
+                // افزودن TraceId
                 _httpClient.DefaultRequestHeaders.Remove("X-Trace-Id");
                 _httpClient.DefaultRequestHeaders.Add("X-Trace-Id", traceId);
 
@@ -75,6 +76,63 @@ namespace Zohal.Infrastructure
             {
                 var err = ZohalError.Unexpected(
                     "Unexpected exception during HTTP request",
+                    ex.Message);
+
+                return ZohalResult<string>.Failure(err, traceId);
+            }
+        }
+
+        /// <summary>
+        /// ارسال POST به صورت Multipart/Form-Data (برای OCR)
+        /// </summary>
+        public async Task<ZohalResult<string>> PostMultipartAsync(
+            string endpoint,
+            object request,
+            string traceId,
+            CancellationToken cancellationToken)
+        {
+            try
+            {
+                _httpClient.DefaultRequestHeaders.Remove("X-Trace-Id");
+                _httpClient.DefaultRequestHeaders.Add("X-Trace-Id", traceId);
+
+                using var content = new MultipartFormDataContent();
+
+                // تبدیل DTO به form-data
+                var props = request.GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance);
+
+                foreach (var prop in props)
+                {
+                    var value = prop.GetValue(request);
+                    if (value == null)
+                        continue;
+
+                    var str = value.ToString()!;
+                    content.Add(new StringContent(str), prop.Name);
+                }
+
+                var response = await _httpClient.PostAsync(
+                    endpoint,
+                    content,
+                    cancellationToken);
+
+                var body = await response.Content.ReadAsStringAsync(cancellationToken);
+
+                if (!response.IsSuccessStatusCode)
+                {
+                    var err = ZohalError.Http(
+                        "HTTP error status returned from server",
+                        $"StatusCode={response.StatusCode}, Body={body}");
+
+                    return ZohalResult<string>.Failure(err, traceId);
+                }
+
+                return ZohalResult<string>.Success(body, traceId);
+            }
+            catch (Exception ex)
+            {
+                var err = ZohalError.Unexpected(
+                    "Unexpected exception during multipart HTTP request",
                     ex.Message);
 
                 return ZohalResult<string>.Failure(err, traceId);

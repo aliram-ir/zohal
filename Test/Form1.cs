@@ -21,8 +21,8 @@ namespace Test
         {
             var request = new NationalIdentityInquiryRequest
             {
-                NationalCode = "1171293003",
-                BirthDate = "1364/06/13"
+                NationalCode = "",
+                BirthDate = ""
             };
 
             var result = await _zohal.NationalIdentityInquiryAsync(request);
@@ -48,7 +48,7 @@ namespace Test
         {
             var request = new CardInquiryRequest
             {
-                CardNumber = "6037691590868097",
+                CardNumber = "",
             };
 
             var result = await _zohal.CardInquiryAsync(request);
@@ -73,7 +73,7 @@ namespace Test
         {
             var request = new BouncedChequeRequest
             {
-                NationalCode = "1171293003",
+                NationalCode = "",
                 NationalityType = 1,
             };
 
@@ -90,6 +90,45 @@ namespace Test
                 MessageBox.Show(result.Error?.Message ?? "خطای نامشخص");
                 Console.WriteLine(result.Error?.Message.ToString());
                 Debug.WriteLine(result.Error?.Message.ToString());
+            }
+        }
+
+        private async void SimcardBillBtn_Click(object sender, EventArgs e)
+        {
+            var request = new SimCardBillRequest
+            {
+                Mobile = ""
+            };
+
+            var result = await _zohal.SimCardBillInquiry(request);
+
+            if (result.IsSuccess)
+            {
+                var data = result.Data;
+
+                var midTerm = data?.MidTerm;
+                var finalTerm = data?.FinalTerm;
+
+                MessageBox.Show(
+                    $"قبض میان‌دوره:\n" +
+                    $"مبلغ: {midTerm?.Amount}\n" +
+                    $"شناسه قبض: {midTerm?.BillId}\n" +
+                    $"شناسه پرداخت: {midTerm?.PaymentId}\n\n" +
+                    $"قبض پایان‌دوره:\n" +
+                    $"مبلغ: {finalTerm?.Amount}\n" +
+                    $"شناسه قبض: {finalTerm?.BillId}\n" +
+                    $"شناسه پرداخت: {finalTerm?.PaymentId}"
+                );
+
+                Console.WriteLine($"MidTerm Amount: {midTerm?.Amount}");
+                Console.WriteLine($"FinalTerm Amount: {finalTerm?.Amount}");
+            }
+            else
+            {
+                MessageBox.Show(result.Error?.Message ?? "خطای نامشخص");
+
+                Console.WriteLine(result.Error?.Message);
+                Debug.WriteLine(result.Error?.Message);
             }
         }
     }

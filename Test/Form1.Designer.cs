@@ -48,9 +48,12 @@
             button2 = new Button();
             card_inquiryBtn = new Button();
             MainPanel = new Panel();
+            groupBox3 = new GroupBox();
+            SimcardBillBtn = new Button();
             RightPanel.SuspendLayout();
             groupBox2.SuspendLayout();
             groupBox1.SuspendLayout();
+            groupBox3.SuspendLayout();
             SuspendLayout();
             // 
             // TopPanel
@@ -74,6 +77,7 @@
             // RightPanel
             // 
             RightPanel.AutoScroll = true;
+            RightPanel.Controls.Add(groupBox3);
             RightPanel.Controls.Add(groupBox2);
             RightPanel.Controls.Add(groupBox1);
             RightPanel.Dock = DockStyle.Right;
@@ -94,7 +98,7 @@
             groupBox2.Dock = DockStyle.Top;
             groupBox2.Location = new Point(0, 236);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(225, 147);
+            groupBox2.Size = new Size(208, 147);
             groupBox2.TabIndex = 2;
             groupBox2.TabStop = false;
             groupBox2.Text = "احراز هویت";
@@ -104,7 +108,7 @@
             button14.Dock = DockStyle.Top;
             button14.Location = new Point(3, 110);
             button14.Name = "button14";
-            button14.Size = new Size(219, 23);
+            button14.Size = new Size(202, 23);
             button14.TabIndex = 6;
             button14.Text = "شاهکار (تطابق کد ملی و موبایل)​";
             button14.UseVisualStyleBackColor = true;
@@ -114,7 +118,7 @@
             button15.Dock = DockStyle.Top;
             button15.Location = new Point(3, 87);
             button15.Name = "button15";
-            button15.Size = new Size(219, 23);
+            button15.Size = new Size(202, 23);
             button15.TabIndex = 5;
             button15.Text = "تطابق کارت و نام صاحب کارت​";
             button15.UseVisualStyleBackColor = true;
@@ -124,7 +128,7 @@
             button16.Dock = DockStyle.Top;
             button16.Location = new Point(3, 64);
             button16.Name = "button16";
-            button16.Size = new Size(219, 23);
+            button16.Size = new Size(202, 23);
             button16.TabIndex = 4;
             button16.Text = "تطابق شماره کارت و کد ملی​";
             button16.UseVisualStyleBackColor = true;
@@ -134,7 +138,7 @@
             button17.Dock = DockStyle.Top;
             button17.Location = new Point(3, 41);
             button17.Name = "button17";
-            button17.Size = new Size(219, 23);
+            button17.Size = new Size(202, 23);
             button17.TabIndex = 3;
             button17.Text = "تطابق کد ملی و شماره شبا​";
             button17.UseVisualStyleBackColor = true;
@@ -144,7 +148,7 @@
             NationalIdentityInquiryBtn.Dock = DockStyle.Top;
             NationalIdentityInquiryBtn.Location = new Point(3, 18);
             NationalIdentityInquiryBtn.Name = "NationalIdentityInquiryBtn";
-            NationalIdentityInquiryBtn.Size = new Size(219, 23);
+            NationalIdentityInquiryBtn.Size = new Size(202, 23);
             NationalIdentityInquiryBtn.TabIndex = 2;
             NationalIdentityInquiryBtn.Text = "استعلام اطلاعات هویتی";
             NationalIdentityInquiryBtn.UseVisualStyleBackColor = true;
@@ -164,7 +168,7 @@
             groupBox1.Dock = DockStyle.Top;
             groupBox1.Location = new Point(0, 0);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(225, 236);
+            groupBox1.Size = new Size(208, 236);
             groupBox1.TabIndex = 1;
             groupBox1.TabStop = false;
             groupBox1.Text = "بانکی";
@@ -174,7 +178,7 @@
             BouncedChequeBtn.Dock = DockStyle.Top;
             BouncedChequeBtn.Location = new Point(3, 202);
             BouncedChequeBtn.Name = "BouncedChequeBtn";
-            BouncedChequeBtn.Size = new Size(219, 23);
+            BouncedChequeBtn.Size = new Size(202, 23);
             BouncedChequeBtn.TabIndex = 10;
             BouncedChequeBtn.Text = "استعلام چک برگشتی​";
             BouncedChequeBtn.UseVisualStyleBackColor = true;
@@ -185,7 +189,7 @@
             button8.Dock = DockStyle.Top;
             button8.Location = new Point(3, 179);
             button8.Name = "button8";
-            button8.Size = new Size(219, 23);
+            button8.Size = new Size(202, 23);
             button8.TabIndex = 9;
             button8.Text = "استعلام چک صیادی​";
             button8.UseVisualStyleBackColor = true;
@@ -195,7 +199,7 @@
             button7.Dock = DockStyle.Top;
             button7.Location = new Point(3, 156);
             button7.Name = "button7";
-            button7.Size = new Size(219, 23);
+            button7.Size = new Size(202, 23);
             button7.TabIndex = 8;
             button7.Text = "استعلام شبا​";
             button7.UseVisualStyleBackColor = true;
@@ -205,7 +209,7 @@
             button6.Dock = DockStyle.Top;
             button6.Location = new Point(3, 133);
             button6.Name = "button6";
-            button6.Size = new Size(219, 23);
+            button6.Size = new Size(202, 23);
             button6.TabIndex = 7;
             button6.Text = "تبدیل کارت به حساب​";
             button6.UseVisualStyleBackColor = true;
@@ -215,7 +219,7 @@
             button5.Dock = DockStyle.Top;
             button5.Location = new Point(3, 110);
             button5.Name = "button5";
-            button5.Size = new Size(219, 23);
+            button5.Size = new Size(202, 23);
             button5.TabIndex = 6;
             button5.Text = "تطابق شبا و نام صاحب شبا​";
             button5.UseVisualStyleBackColor = true;
@@ -225,7 +229,7 @@
             button4.Dock = DockStyle.Top;
             button4.Location = new Point(3, 87);
             button4.Name = "button4";
-            button4.Size = new Size(219, 23);
+            button4.Size = new Size(202, 23);
             button4.TabIndex = 5;
             button4.Text = "تطابق کارت و نام صاحب کارت​";
             button4.UseVisualStyleBackColor = true;
@@ -235,7 +239,7 @@
             button3.Dock = DockStyle.Top;
             button3.Location = new Point(3, 64);
             button3.Name = "button3";
-            button3.Size = new Size(219, 23);
+            button3.Size = new Size(202, 23);
             button3.TabIndex = 4;
             button3.Text = "تبدیل حساب به شبا​";
             button3.UseVisualStyleBackColor = true;
@@ -245,7 +249,7 @@
             button2.Dock = DockStyle.Top;
             button2.Location = new Point(3, 41);
             button2.Name = "button2";
-            button2.Size = new Size(219, 23);
+            button2.Size = new Size(202, 23);
             button2.TabIndex = 3;
             button2.Text = "تبدیل کارت به شبا​";
             button2.UseVisualStyleBackColor = true;
@@ -255,7 +259,7 @@
             card_inquiryBtn.Dock = DockStyle.Top;
             card_inquiryBtn.Location = new Point(3, 18);
             card_inquiryBtn.Name = "card_inquiryBtn";
-            card_inquiryBtn.Size = new Size(219, 23);
+            card_inquiryBtn.Size = new Size(202, 23);
             card_inquiryBtn.TabIndex = 2;
             card_inquiryBtn.Text = "استعلام نام صاحب کارت​";
             card_inquiryBtn.UseVisualStyleBackColor = true;
@@ -272,6 +276,28 @@
             MainPanel.Size = new Size(593, 518);
             MainPanel.TabIndex = 2;
             // 
+            // groupBox3
+            // 
+            groupBox3.Controls.Add(SimcardBillBtn);
+            groupBox3.Dock = DockStyle.Top;
+            groupBox3.Location = new Point(0, 383);
+            groupBox3.Name = "groupBox3";
+            groupBox3.Size = new Size(208, 147);
+            groupBox3.TabIndex = 3;
+            groupBox3.TabStop = false;
+            groupBox3.Text = "استعلام قبض";
+            // 
+            // SimcardBillBtn
+            // 
+            SimcardBillBtn.Dock = DockStyle.Top;
+            SimcardBillBtn.Location = new Point(3, 18);
+            SimcardBillBtn.Name = "SimcardBillBtn";
+            SimcardBillBtn.Size = new Size(202, 23);
+            SimcardBillBtn.TabIndex = 2;
+            SimcardBillBtn.Text = "استعلام قبض موبایل";
+            SimcardBillBtn.UseVisualStyleBackColor = true;
+            SimcardBillBtn.Click += SimcardBillBtn_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -286,6 +312,7 @@
             RightPanel.ResumeLayout(false);
             groupBox2.ResumeLayout(false);
             groupBox1.ResumeLayout(false);
+            groupBox3.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -312,5 +339,11 @@
         private Button button16;
         private Button button17;
         private Button NationalIdentityInquiryBtn;
+        private GroupBox groupBox3;
+        private Button button1;
+        private Button button9;
+        private Button button10;
+        private Button button11;
+        private Button SimcardBillBtn;
     }
 }

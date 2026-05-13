@@ -136,6 +136,28 @@ public interface IZohalClient
         EnamadInquiryRequest request,
         CancellationToken cancellationToken = default);
 
+    /// <summary>
+    /// OCR کارت ملی​
+    /// </summary>
+    Task<ZohalResult<NationalCardOcrResponse>> NationalCardOcrAsync(
+        NationalCardOcrRequest request,
+        CancellationToken cancellationToken = default);
+
+
+    /// <summary>
+    /// OTP صوتی​
+    /// </summary>
+    Task<ZohalResult<VoiceOtpResponse>> VoiceOtp(
+       VoiceOtpRequest request,
+        CancellationToken cancellationToken = default);
+
+    /// <summary>
+    /// استعلام قبض موبایل
+    /// </summary>
+    Task<ZohalResult<SimCardBillResponse>> SimCardBillInquiry(
+       SimCardBillRequest request,
+        CancellationToken cancellationToken = default);
+
 
     #endregion
 }

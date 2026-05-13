@@ -104,4 +104,49 @@ public static class ZohalEndpoints
     /// استعلام Enamad​
     /// </summary>
     public const string EnamadInquiry = "services/inquiry/enamad_inquiry";
+
+    /// <summary>
+    /// OCR کارت ملی​
+    /// </summary>
+    public const string NationalCardOcr = "services/inquiry/national_card_ocr";
+
+    /// <summary>
+    /// OTP صوتی​
+    /// </summary>
+    public const string VoiceOtp = "services/inquiry/voice_otp";
+
+    /// <summary>
+    /// استعلام قبض رایتل​
+    /// </summary>
+    public const string RightelBill = "services/inquiry/bill/rightel";
+
+    /// <summary>
+    /// استعلام قبض همراه اول​
+    /// </summary>
+    public const string MciBill = "services/inquiry/bill/mci";
+
+    /// <summary>
+    /// استعلام قبض ایرانسل​
+    /// </summary>
+    public const string IrancellBill = "services/inquiry/bill/irancell";
+
+    /// <summary>
+    /// استعلام قبض تلفن ثابت​
+    /// </summary>
+    public const string FixedLineBill = "services/inquiry/bill/fixed_line";
+
+    /// <summary>
+    /// استعلام قبض گاز​
+    /// </summary>
+    public const string GasBill = "services/inquiry/bill/gas";
+
+    /// <summary>
+    /// استعلام قبض آب​
+    /// </summary>
+    public const string WaterBill = "services/inquiry/bill/water";
+
+    /// <summary>
+    /// استعلام قبض برق​
+    /// </summary>
+    public const string ElectricityBill = "services/inquiry/bill/electricity";
 }

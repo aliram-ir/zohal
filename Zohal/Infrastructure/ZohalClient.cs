@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Zohal.Abstractions;
 using Zohal.Constants;
 using Zohal.Core;
+using Zohal.Enums;
 using Zohal.Models;
 
 namespace Zohal.Infrastructure
@@ -123,6 +124,97 @@ namespace Zohal.Infrastructure
                 return ZohalResult<TResponse>.Failure(error, traceId);
             }
         }
+
+        private async Task<ZohalResult<TResponse>> SendByMultipartAsync<TRequest, TResponse>(
+    string endpoint,
+    TRequest request,
+    CancellationToken cancellationToken = default)
+    where TResponse : class
+        {
+            var traceId = Guid.NewGuid().ToString("N");
+
+            _logger.LogInformation(
+                "➡️ شروع درخواست Multipart | Endpoint={Endpoint} | TraceId={TraceId} | RequestType={Type}",
+                endpoint, traceId, typeof(TRequest).Name);
+
+            try
+            {
+                //===========================================================
+                //  مرحله ۱: اعتبارسنجی ورودی
+                //===========================================================
+                var validationError = _validator.Validate(request);
+                if (validationError is not null)
+                {
+                    _logger.LogWarning(
+                        "⚠️ مشکل اعتبارسنجی | Endpoint={Endpoint} | TraceId={TraceId} | Error={Error}",
+                        endpoint, traceId, validationError);
+
+                    return ZohalResult<TResponse>.Failure(validationError, traceId);
+                }
+
+                //===========================================================
+                //  مرحله ۲: ارسال Multipart HTTP Request
+                //===========================================================
+                _logger.LogInformation(
+                    "📤 ارسال Multipart HTTP POST | Endpoint={Endpoint} | TraceId={TraceId}",
+                    endpoint, traceId);
+
+                var httpResult = await _executor.PostMultipartAsync(
+                    endpoint,
+                    request!,
+                    traceId,
+                    cancellationToken);
+
+                if (!httpResult.IsSuccess)
+                {
+                    _logger.LogError(
+                        "❌ خطا در HTTP Multipart | Endpoint={Endpoint} | TraceId={TraceId} | Error={Error}",
+                        endpoint, traceId, httpResult.Error);
+
+                    return ZohalResult<TResponse>.Failure(httpResult.Error!, traceId);
+                }
+
+                //===========================================================
+                //  مرحله ۳: پارس JSON
+                //===========================================================
+                _logger.LogInformation(
+                    "📥 دریافت پاسخ JSON، شروع پردازش | Endpoint={Endpoint} | TraceId={TraceId}",
+                    endpoint, traceId);
+
+                var parsed = _parser.Parse<TResponse>(httpResult.Data!, traceId);
+
+                if (!parsed.IsSuccess)
+                {
+                    _logger.LogError(
+                        "❌ خطا در پارس JSON | Endpoint={Endpoint} | TraceId={TraceId} | Error={Error}",
+                        endpoint, traceId, parsed.Error);
+
+                    return parsed;
+                }
+
+                _logger.LogInformation(
+                    "✅ موفقیت کامل | Endpoint={Endpoint} | TraceId={TraceId}",
+                    endpoint, traceId);
+
+                return parsed;
+            }
+            catch (Exception ex)
+            {
+                //===========================================================
+                //  خطای غیرمنتظره
+                //===========================================================
+                var error = ZohalError.Unexpected(
+                    "Unhandled exception during multipart request execution.",
+                    ex.Message);
+
+                _logger.LogCritical(ex,
+                    "💥 خطای غیرمنتظره | Endpoint={Endpoint} | TraceId={TraceId}",
+                    endpoint, traceId);
+
+                return ZohalResult<TResponse>.Failure(error, traceId);
+            }
+        }
+
 
         //===========================================================
         //                     سرویس‌های هویتی
@@ -284,5 +376,35 @@ namespace Zohal.Infrastructure
                 ZohalEndpoints.EnamadInquiry,
                 request,
                 cancellationToken);
+
+        public Task<ZohalResult<NationalCardOcrResponse>> NationalCardOcrAsync(
+    NationalCardOcrRequest request,
+    CancellationToken cancellationToken = default)
+    => SendByMultipartAsync<NationalCardOcrRequest, NationalCardOcrResponse>(
+        ZohalEndpoints.NationalCardOcr,
+        request,
+        cancellationToken);
+
+        public Task<ZohalResult<VoiceOtpResponse>> VoiceOtp(VoiceOtpRequest request, CancellationToken cancellationToken = default)
+        => SendAsync<VoiceOtpRequest, VoiceOtpResponse>(
+                ZohalEndpoints.VoiceOtp,
+                request,
+                cancellationToken);
+
+        public Task<ZohalResult<SimCardBillResponse>> SimCardBillInquiry(
+     SimCardBillRequest request,
+     CancellationToken cancellationToken = default)
+        {
+            var operatorInfo = SimCardOperatorHelper.DetectOperator(request.Mobile);
+
+            var endpoint = SimCardBillEndpointResolver.Resolve(operatorInfo.Type);
+
+            return SendAsync<SimCardBillRequest, SimCardBillResponse>(
+                endpoint,
+                request,
+                cancellationToken);
+        }
+
+
     }
 }
