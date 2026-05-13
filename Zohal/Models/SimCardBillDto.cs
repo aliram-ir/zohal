@@ -20,7 +20,6 @@ namespace Zohal.Models
         /// <summary>
         /// مبلغ قبض
         /// </summary>
-
         [JsonPropertyName("amount")]
         public long Amount { get; set; }
 

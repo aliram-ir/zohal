@@ -405,6 +405,16 @@ namespace Zohal.Infrastructure
                 cancellationToken);
         }
 
+        public Task<ZohalResult<BillsResponse>> BillsInquiry(BillsRequest request, CancellationToken cancellationToken = default)
+        {
+            var endpoint = UtilityBillEndpointResolver.Resolve(
+        request.BillId,
+        request.BillType);
 
+            return SendAsync<BillsRequest, BillsResponse>(
+                endpoint,
+                request,
+                cancellationToken);
+        }
     }
 }

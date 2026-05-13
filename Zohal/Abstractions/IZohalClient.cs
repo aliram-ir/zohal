@@ -158,6 +158,13 @@ public interface IZohalClient
        SimCardBillRequest request,
         CancellationToken cancellationToken = default);
 
+    /// <summary>
+    /// استعلام قبض‌ها
+    /// </summary>
+    Task<ZohalResult<BillsResponse>> BillsInquiry(
+       BillsRequest request,
+        CancellationToken cancellationToken = default);
+
 
     #endregion
 }

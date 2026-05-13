@@ -149,4 +149,19 @@ public static class ZohalEndpoints
     /// استعلام قبض برق​
     /// </summary>
     public const string ElectricityBill = "services/inquiry/bill/electricity";
+
+    ///// <summary>
+    ///// 
+    ///// </summary>
+    //public const string ElectricityBill = "services/inquiry/bill/electricity";
+
+    ///// <summary>
+    ///// 
+    ///// </summary>
+    //public const string ElectricityBill = "services/inquiry/bill/electricity";
+
+    ///// <summary>
+    ///// 
+    ///// </summary>
+    //public const string ElectricityBill = "services/inquiry/bill/electricity";
 }
